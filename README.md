@@ -1,54 +1,83 @@
-# AITAH Comment Bot
+# Reddit AITAH Bot
 
-**⚠️ EXPERIMENTAL PROOF OF CONCEPT ⚠️**
+**⚠️ EDUCATIONAL PURPOSE ONLY ⚠️**
 
-This is an experimental proof of concept for educational purposes only. This project demonstrates AI-powered Reddit commenting on AITAH (Am I The Asshole) subreddits using OpenRouter API.
+AI-powered Reddit bot for r/AITAH subreddit using OpenRouter API.
 
-## Setup
+## 🚀 DigitalOcean Deployment ($4/month)
 
-1. **Install dependencies**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
+### Step 1: Create DigitalOcean Droplet
+1. Go to [DigitalOcean](https://cloud.digitalocean.com/)
+2. Create Droplet → **Docker on Ubuntu 22.04**
+3. Choose **Basic $4/month** (1GB RAM, 1 vCPU)
+4. Add your SSH key
+5. Create droplet
 
-2. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your credentials
-   ```
+### Step 2: Deploy Bot
+```bash
+# SSH into your droplet
+ssh root@your-droplet-ip
 
-3. **Get API credentials**
-   - Reddit: https://www.reddit.com/prefs/apps (create script app)
-   - OpenRouter: https://openrouter.ai (get API key)
+# Clone repository
+git clone https://github.com/your-username/reddit_karma_farmer_auto_commentator_with_AI.git
+cd reddit_karma_farmer_auto_commentator_with_AI
 
-4. **Test and run**
-   ```bash
-   python test_config.py
-   python main.py
-   ```
+# Setup environment
+cp .env.example .env
+nano .env  # Add your credentials (see below)
 
-## Environment Variables
+# Start bot
+docker-compose up -d
 
-```env
-REDDIT_CLIENT_ID=your_client_id
-REDDIT_CLIENT_SECRET=your_client_secret
-REDDIT_USERNAME=your_username
-REDDIT_PASSWORD=your_password
-OPENROUTER_API_KEY=your_openrouter_key
-SITE_URL=https://localhost:8080
-SITE_NAME=AITAH Comment Bot
+# View logs
+docker-compose logs -f
 ```
 
-## Files
+## 🔧 Environment Setup
 
-- `main.py` - Bot logic
-- `generator_comment.py` - AI comment generation
-- `config.py` - Environment loader
-- `test_config.py` - Configuration tester
-- `.env` - Your credentials (not in git)
+Edit `.env` with your credentials:
 
-## Disclaimer
+```env
+REDDIT_CLIENT_ID=your_reddit_client_id
+REDDIT_CLIENT_SECRET=your_reddit_client_secret  
+REDDIT_USERNAME=your_reddit_username
+REDDIT_PASSWORD=your_reddit_password
+OPENROUTER_API_KEY=your_openrouter_api_key
+SITE_URL=https://localhost
+SITE_NAME=Reddit Bot
+```
 
-This is a proof of concept for educational purposes. Use responsibly and in compliance with Reddit's Terms of Service.
+### Get API Keys:
+- **Reddit**: https://www.reddit.com/prefs/apps (create "script" app)
+- **OpenRouter**: https://openrouter.ai (sign up for API key)
+
+## 📊 Bot Settings
+
+- **Target**: r/AITAH only
+- **Frequency**: 10-20 minutes between comments  
+- **Daily Limit**: 50 comments max
+- **Post Age**: Under 2 hours old
+
+## 🛠️ Management Commands
+
+```bash
+# Start bot
+docker-compose up -d
+
+# Stop bot  
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Update bot
+git pull && docker-compose up -d --pull
+```
+
+## 💰 Total Cost: $4/month
+
+Perfect for running 24/7 with room to spare.
+
+## 📋 Disclaimer
+
+Educational proof of concept. Use responsibly and follow Reddit's Terms of Service.

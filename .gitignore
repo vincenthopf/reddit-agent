@@ -1,5 +1,72 @@
-__pycache__/
-.venv
-venv
-config_secrets.py
+# Environment files
 .env
+.env.local
+.env.production
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Bot data files (user-specific)
+commented_post_links.txt
+stored_comments.json
+*.log
+
+# Data directories
+data/
+logs/
+
+# Analysis files (large datasets)
+analysis/
+*.json
+*.txt
+!requirements.txt
+!.env.example
+!README.md
+!LICENSE
+!DEPLOYMENT.md
+
+# Docker
+.dockerignore
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

@@ -2,58 +2,10 @@ version: '3.8'
 
 services:
   reddit-bot:
-    image: ghcr.io/vincenthopf/reddit_karma_farmer_auto_commentator_with_ai:latest
-    container_name: reddit-karma-bot
+    image: ghcr.io/vincenthopf/reddit-agent:latest
+    container_name: reddit-bot
     restart: unless-stopped
-    environment:
-      # Reddit API credentials (loaded from .env file)
-      - REDDIT_CLIENT_ID=${REDDIT_CLIENT_ID}
-      - REDDIT_CLIENT_SECRET=${REDDIT_CLIENT_SECRET}
-      - REDDIT_USERNAME=${REDDIT_USERNAME}
-      - REDDIT_PASSWORD=${REDDIT_PASSWORD}
-      
-      # OpenRouter API credentials
-      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
-      
-      # Site configuration
-      - SITE_URL=${SITE_URL:-https://localhost}
-      - SITE_NAME=${SITE_NAME:-Reddit Bot}
-      
-      # Python environment
-      - PYTHONUNBUFFERED=1
-      - PYTHONDONTWRITEBYTECODE=1
-    
+    env_file: .env
     volumes:
-      # Persist data files
       - ./data:/app/data
       - ./logs:/app/logs
-      - ./commented_post_links.txt:/app/commented_post_links.txt
-      - ./stored_comments.json:/app/stored_comments.json
-    
-    env_file:
-      - .env
-    
-    # Resource limits
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: '0.5'
-        reservations:
-          memory: 256M
-          cpus: '0.25'
-    
-    # Logging configuration
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-    
-    # Network configuration
-    networks:
-      - reddit-bot-network
-
-networks:
-  reddit-bot-network:
-    driver: bridge

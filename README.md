@@ -19,8 +19,8 @@ AI-powered Reddit bot for r/AITAH subreddit using OpenRouter API.
 ssh root@your-droplet-ip
 
 # Clone repository
-git clone https://github.com/your-username/reddit_karma_farmer_auto_commentator_with_AI.git
-cd reddit_karma_farmer_auto_commentator_with_AI
+git clone https://github.com/vincenthopf/reddit-agent.git
+cd reddit-agent
 
 # Setup environment
 cp .env.example .env
